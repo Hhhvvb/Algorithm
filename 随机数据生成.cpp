@@ -9,6 +9,22 @@ int get_rand(int L, int R) {
     return uniform_int_distribution<int>(L, R)(rng);
 }
 
+void get_permutation(int n) {
+    vector<int> p(n);
+    iota(p.begin(), p.end(), 1);
+
+    cout << n << "\n";
+    for (int v : p) cout << v << " ";
+    cout << "\n";
+}
+
+void get_rand_arr(int n, int mn, int mx) {
+    cout << n << "\n";
+    for (int i = 1; i <= n; i ++) {
+        cout << get_rand(mn, mx) << " \n"[i == n];
+    }
+}
+
 void get_tree(int n) {
     cout << n << "\n";
     int type = get_rand(1, 3);
