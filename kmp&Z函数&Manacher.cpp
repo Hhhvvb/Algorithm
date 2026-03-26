@@ -45,3 +45,23 @@ void solve() {
         if (i + z[i] > r) l = i, r = i + z[i];
     }
 }
+
+// 马拉车算法(Manacher)
+void solve() {
+    int n;
+    string s;
+    cin >> n >> s;
+
+    string t = "^#";
+    for (char c : s) t += c, t += '#';
+    t += '$';
+
+    int m = t.size();
+    vector<int> p(m);
+    int c = 0, r = 0;
+    for (int i = 1; i < m - 1; i ++) {
+        if (i < r) p[i] = min(p[2 * c - i], r - i);
+        while (t[i - p[i] - 1] == t[i + p[i] + 1]) p[i] ++;
+        if (i + p[i] > r) c = i, r = i + p[i];
+    }
+}
