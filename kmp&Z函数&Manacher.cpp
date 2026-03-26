@@ -64,4 +64,8 @@ void solve() {
         while (t[i - p[i] - 1] == t[i + p[i] + 1]) p[i] ++;
         if (i + p[i] > r) c = i, r = i + p[i];
     }
+
+    auto is_pal = [&](int l, int r) {
+        return p[l + r + 2] >= r - l + 1;
+    };
 }
