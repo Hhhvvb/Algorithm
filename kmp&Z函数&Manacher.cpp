@@ -3,6 +3,7 @@
 using namespace std;
 using ll = long long;
 
+// kmp
 void solve() {
     string s, p;
     cin >> s >> p;
@@ -28,4 +29,19 @@ void solve() {
     }
 
     for (int i = 1; i <= m; i ++) cout << ne[i] << " \n"[i == m];
+}
+
+// 扩展kmp(Z函数)
+void solve() {
+    int n;
+    string s;
+    cin >> n >> s;
+
+    vector<int> z(n);
+    int l = 0, r = 0;
+    for (int i = 1; i < n; i ++) {
+        if (i < r) z[i] = min(z[i - l], r - i);
+        while (i + z[i] < n && s[z[i]] == s[i + z[i]]) z[i] ++;
+        if (i + z[i] > r) l = i, r = i + z[i];
+    }
 }
